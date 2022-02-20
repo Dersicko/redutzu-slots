@@ -423,7 +423,7 @@ function togglePacanele(start, banuti) {
     rolling = 0;
   } else {
     allFile.css("display", "none");
-    $.post("https://qb-slots/close", JSON.stringify({ amount: parseInt(backCoins / 2) }));
+    $.post(`https://${GetParentResourceName()}/close`, JSON.stringify({ amount: parseInt(backCoins / 2) }));
     insertCoin(-coins);
   }
 }
@@ -433,7 +433,7 @@ const toggleAmount = (state, money) => {
     $('.amount').css('display', 'flex');
   } else {
     $('.amount').css('display', 'none');
-    $.post('https://qb-slots/setCoins', JSON.stringify({
+    $.post(`https://${GetParentResourceName()}/setCoins`, JSON.stringify({
       amount: parseInt(money)
     }));
   }
