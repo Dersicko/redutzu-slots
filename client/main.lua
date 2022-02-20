@@ -38,7 +38,7 @@ CreateThread(function()
 			local slotsCoords = vector3(v.x, v.y, v.z)
 
 			if #(playerCoords - slotsCoords) <= 2.5 then
-			    QBCore.Functions.DrawText3D(slotsCoords.x, slotsCoords.y, slotsCoords.z, '~b~E~w~ - Joaca la aparat')
+			    QBCore.Functions.DrawText3D(slotsCoords.x, slotsCoords.y, slotsCoords.z, '~b~E~w~ - Open slots')
 
 				if IsControlJustReleased(0, 38) then
 					TriggerEvent('qb-slots:client:enter')
