@@ -467,8 +467,8 @@ $(document).ready(function () {
 
   $('.win').hide();
 
-  $('#ownedCoins').empty().append(new Intl.NumberFormat('ro-RO').format(coins));
-  $('#ownedBet').empty().append(new Intl.NumberFormat('ro-RO').format(bet));
+  $('#ownedCoins').empty().append(new Intl.NumberFormat('en-US').format(coins));
+  $('#ownedBet').empty().append(new Intl.NumberFormat('en-US').format(bet));
 
   $('body').keyup(function (e) {
     switch (e.keyCode) {
