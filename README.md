@@ -13,6 +13,8 @@ Config.Slots = {
 
 ## Preview
 
+**INFO**: Click the image to view the video
+
 [![Slots Preview](https://i.imgur.com/xPqzpKt.png)](https://i.imgur.com/cZGbAEl.mp4 "Slots preview")
 [![Validation Preview](https://i.imgur.com/xPqzpKt.png)](https://i.imgur.com/cp84kCJ.png "Validation preview")
 
