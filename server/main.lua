@@ -7,13 +7,13 @@ RegisterServerEvent('qb-slots:server:checkForMoney', function(bet)
     if player ~= nil then
         if bet % 10 == 0 and bet >= 10 then
             if player.PlayerData.money['cash'] >= bet then
-                player.Functions.RemoveMoney('cash', tonumber(bet), 'Bani bagati in aparat!')
+                player.Functions.RemoveMoney('cash', tonumber(bet), 'Slots-Money')
                 TriggerClientEvent('qb-slots:client:updateSlots', src, bet)
             else
-                TriggerClientEvent('QBCore:Notify', src, 'Nu ai destui bani..', 'error', 10000)
+                TriggerClientEvent('QBCore:Notify', src, 'You don\'t have enough money!', 'error', 10000)
             end
         else
-            TriggerClientEvent('QBCore:Notify', src, 'Trebuie sa introduci un multiplu al numarului 10. Ex: 10, 20, 60, 100', 'error', 10000)
+            TriggerClientEvent('QBCore:Notify', src, 'You must enter a multiple of 10. Ex: 10, 60, 100', 'error', 10000)
         end
     end
 end)
@@ -26,10 +26,10 @@ RegisterServerEvent('qb-slots:server:payRewards', function(amount)
         amount = tonumber(amount)
 
         if amount > 0 then
-            player.Functions.AddMoney('cash', amount, 'Bani castigati din pacanele!')
-            TriggerClientEvent('QBCore:Notify', src, 'Ai scos ' .. amount .. '$ din aparat!', 'success', 10000)
+            player.Functions.AddMoney('cash', amount, 'Slots-Money-Won')
+            TriggerClientEvent('QBCore:Notify', src, 'You took $' .. tostring(amount) .. ' out of the machine!', 'success', 10000)
         else
-            TriggerClientEvent('QBCore:Notify', src, 'Ai pierdut toti banii, ai grija data viitoare..', 'error', 10000)
+            TriggerClientEvent('QBCore:Notify', src, 'You lost all your money, be careful next time..', 'error', 10000)
         end
     end
 end)
