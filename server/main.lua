@@ -18,7 +18,7 @@ RegisterServerEvent('qb-slots:server:checkForMoney', function(bet)
     end
 end)
 
-RegisterServerEvent('qb-slots:server:payRewards', function(amount)
+QBCore.Functions.CreateCallback('qb-slots:server:close', function(source, cb, amount)
     local src = source
 	local player = QBCore.Functions.GetPlayer(src)
 
@@ -28,8 +28,12 @@ RegisterServerEvent('qb-slots:server:payRewards', function(amount)
         if amount > 0 then
             player.Functions.AddMoney('cash', amount, 'Slots-Money-Won')
             TriggerClientEvent('QBCore:Notify', src, 'You took $' .. tostring(amount) .. ' out of the machine!', 'success', 10000)
+
+            cb(true)
         else
             TriggerClientEvent('QBCore:Notify', src, 'You lost all your money, be careful next time..', 'error', 10000)
         end
+    else
+        cb(false)
     end
 end)

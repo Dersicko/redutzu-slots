@@ -17,15 +17,23 @@ RegisterNUICallback('setCoins', function(data, cb)
     TriggerServerEvent('qb-slots:server:checkForMoney', tonumber(data.amount) or 0)
 end)
 
-RegisterNetEvent('qb-slots:client:enter', function ()
-    SetOpened(true)
-	SendNUIMessage({ action = 'openAmount' })
+RegisterNetEvent('qb-slots:client:enter', function(coords)
+	local ped = PlayerPedId()
+	local player = GetEntityCoords(ped, false)
+	local dist = #(player - coords)
+
+	if dist <= 5.0 then
+		SetOpened(true)
+		SendNUIMessage({ action = 'openAmount' })
+	end
 end)
 
 RegisterNUICallback('close', function(data, cb)
 	cb('ok')
     SetOpened(false)
-	TriggerServerEvent('qb-slots:server:payRewards', data.amount)
+	QBCore.Functions.TriggerCallback('qb-slots:server:close', function()
+        cb(true)
+    end, data.amount)
 end)
 
 CreateThread(function()
@@ -41,7 +49,7 @@ CreateThread(function()
 			    QBCore.Functions.DrawText3D(slotsCoords.x, slotsCoords.y, slotsCoords.z, '~b~E~w~ - Open slots')
 
 				if IsControlJustReleased(0, 38) then
-					TriggerEvent('qb-slots:client:enter')
+					TriggerEvent('qb-slots:client:enter', slotsCoords)
 				end
 			end
 		end

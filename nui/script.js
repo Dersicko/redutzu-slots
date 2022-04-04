@@ -423,7 +423,9 @@ function togglePacanele(start, banuti) {
     rolling = 0;
   } else {
     allFile.css("display", "none");
-    $.post(`https://${GetParentResourceName()}/close`, JSON.stringify({ amount: parseInt(backCoins / 2) }));
+    $.post(`https://${GetParentResourceName()}/close`, JSON.stringify({ 
+      amount: parseInt(backCoins / 2)
+    }));
     insertCoin(-coins);
   }
 }
