@@ -19,8 +19,23 @@ RegisterServerEvent('qb-slots:server:checkForMoney', function(bet)
 end)
 
 QBCore.Functions.CreateCallback('qb-slots:server:close', function(source, cb, amount)
-    local src = source
-	local player = QBCore.Functions.GetPlayer(src)
+    local src = source	
+    local player = QBCore.Functions.GetPlayer(src)
+    local ped = GetPlayerPed(src)
+    local coords = GetEntityCoords(ped)
+    local allowed = false
+
+    for i, v in pairs(Config.Slots) do
+        local slotCoords = vector3(v.x, v.y, v.z)
+        if #(slotCoords - coords) <= (Config.Radius * 5.0) then
+            allowed = true
+            break
+        end
+    end
+
+    if not allowed then 
+        print('Not in area..')
+    end
 
     if player ~= nil then
         amount = tonumber(amount)
