@@ -1,6 +1,6 @@
-# Fivem Slots
+# 🎰 Slots
 
-**Description**: A qbus slots script made after **[this](https://github.com/plesalex100/vrp_slots)** repo
+**Description**: A slot script started from this [repository](https://github.com/plesalex100/vrp_slots)
 
 ## Configuration
 
