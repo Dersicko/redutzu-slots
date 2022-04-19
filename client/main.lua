@@ -30,38 +30,49 @@ RegisterNUICallback('close', function(data, cb)
 end)
 
 CreateThread(function()
-	while true do
-		Wait(1)
+	local sleep = 500
 
-		local playerCoords = GetEntityCoords(PlayerPedId(), false)
+	while true do
+		local ped = PlayerPedId()
+		local coords = GetEntityCoords(ped, false)
+
+        sleep = 500
 
 		for i, v in ipairs(Config.Slots) do 
-			local slotsCoords = vector3(v.x, v.y, v.z)
+			local slot = vector3(v.x, v.y, v.z)
 
-			if #(playerCoords - slotsCoords) <= Config.Radius then
-			    QBCore.Functions.DrawText3D(slotsCoords.x, slotsCoords.y, slotsCoords.z, '~b~E~w~ - Open slots')
+			if #(coords - slot) <= Config.Radius and not open then
+			    sleep = 5
+
+				DrawMarker(29, slot.x, slot.y, slot.z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.5, 0.5, 0.5, 247, 77, 77, 110, false, false, false, true, false, false, false)
 
 				if IsControlJustReleased(0, 38) then
-					TriggerEvent('qb-slots:client:enter', slotsCoords)
+					TriggerEvent('qb-slots:client:enter', slot)
 				end
 			end
 		end
+		
+		Wait(sleep)
 	end
 end)
 
-CreateThread(function ()
-	while true do
-		Wait(1)
+CreateThread(function()
+	local sleep = 500
 
+	while true do
 		if open then
-			local ped = PlayerPedId()
-			
+			sleep = 1
+
 			DisableControlAction(0, 1, true) 
 			DisableControlAction(0, 2, true)
 			DisableControlAction(0, 24, true)
-			DisablePlayerFiring(ped, true)
 			DisableControlAction(0, 142, true)
 			DisableControlAction(0, 106, true)
+			DisablePlayerFiring(PlayerPedId(), true)
+		else
+			sleep = 500
 		end
+
+		Wait(sleep)
 	end
 end)

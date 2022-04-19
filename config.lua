@@ -1,6 +1,6 @@
 Config = {}
 
-Config.Radius = 3.5
+Config.Radius = 3.0
 Config.Slots = {
     { x = 978.64, y = 66.07, z = 75.74 },
     { x = 980.09, y = 67.25, z = 75.74 },
